@@ -1,6 +1,8 @@
-package com.feicuiedu.gitdroid;
+package com.feicuiedu.gitdroid.home;
 
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.feicuiedu.gitdroid.R;
 import com.feicuiedu.gitdroid.commons.ActivityUtils;
 
 import butterknife.Bind;
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
    // private ActivityUtils activityUtils;
 
     private  MenuItem menuItem;
+    //热门仓库页面fragment
+    private  HotRepoFragment hotRepoFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout.addDrawerListener(toggle);
        toggle.syncState();
+
+        //默认显示的是hotrepofragment 热门仓库
+        hotRepoFragment=new HotRepoFragment();
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentTransaction transaction=fragmentManager.beginTransaction();
+        transaction.replace(R.id.container,hotRepoFragment);
+        transaction.commit();
     }
 
     @Override
