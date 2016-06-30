@@ -24,13 +24,10 @@
     <!--settranslation-->
     <!--setScalex-->
     <!--setAlpha-->
-    <FrameLayout
-        android:id="@+id/layoutPhone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 
         <FrameLayout
-            android:id="@+id/layoutPhoneInner"
+            android:id="@+id/layoutPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -62,7 +59,6 @@
                 android:src="@drawable/screen_large"
                 android:alpha="0"/>
 
-        </FrameLayout>
 
     </FrameLayout>
 
