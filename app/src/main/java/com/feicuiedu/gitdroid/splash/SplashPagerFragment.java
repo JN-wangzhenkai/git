@@ -86,7 +86,7 @@ public class SplashPagerFragment extends Fragment {
                 ivPhoneFont.setAlpha(positionOffset);
 
                 //在移动过程中有一个平移的动画
-                int scroll = (int) (200 * (positionOffset - 1));
+                int scroll = (int) (300 * (positionOffset - 1));
 
                 layoutPhone.setTranslationX(scroll);// 上来就左平移400
                 // layoutPhone.setTranslationY(scroll);

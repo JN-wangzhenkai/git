@@ -17,6 +17,11 @@ import butterknife.ButterKnife;
 /**
  * Created by wangzhenkai on 2016/6/30.
  * 最热门仓库fragment
+ * <p/>本Fragment是被添加到MainActivity中。
+ *
+ * <p/>它上面有一个ViewPager和一个相对应的TabLayout。
+ *
+ * <p/>ViewPager上，每一个页面都是一个RepoListFragment
  */
 public class HotRepoFragment extends Fragment {
 
@@ -38,9 +43,11 @@ public class HotRepoFragment extends Fragment {
 
         ButterKnife.bind(this,view);
 
-        adapter=new HotRepoPagerAdapter(getChildFragmentManager());
+        //注意此处是在Fragment 中添加的Fragment 属于嵌套Fraagment
+        adapter=new HotRepoPagerAdapter(getChildFragmentManager(),getContext());
         viewPager.setAdapter(adapter);
 
+        //将Viewpager 绑定到Tablelayout上
         tabLayout.setupWithViewPager(viewPager);
 
     }

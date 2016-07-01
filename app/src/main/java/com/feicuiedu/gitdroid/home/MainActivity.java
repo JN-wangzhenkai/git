@@ -1,6 +1,7 @@
 package com.feicuiedu.gitdroid.home;
 
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onContentChanged() {
         super.onContentChanged();
         ButterKnife.bind(this);
+
         //设置navigationview监听器
         navigationView.setNavigationItemSelectedListener(this);
         //默认第一个menu项 为选中
@@ -65,10 +67,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //默认显示的是hotrepofragment 热门仓库
         hotRepoFragment=new HotRepoFragment();
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        FragmentTransaction transaction=fragmentManager.beginTransaction();
-        transaction.replace(R.id.container,hotRepoFragment);
-        transaction.commit();
+        replaceFragment(hotRepoFragment);
+//        FragmentManager fragmentManager=getSupportFragmentManager();
+//        FragmentTransaction transaction=fragmentManager.beginTransaction();
+//        transaction.replace(R.id.container,hotRepoFragment);
+//        transaction.commit();
     }
 
     @Override
@@ -98,5 +101,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else{
             super.onBackPressed();//父类本身方法默认关闭
         }
+    }
+
+    //替换不同内容的fragment
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.commit();
     }
 }
