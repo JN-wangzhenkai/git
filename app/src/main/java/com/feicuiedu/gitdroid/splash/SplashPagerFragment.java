@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.feicuiedu.gitdroid.R;
-import com.feicuiedu.gitdroid.pager.Pager2;
+import com.feicuiedu.gitdroid.splash.pager.Pager2;
 
 import butterknife.Bind;
 import butterknife.BindColor;

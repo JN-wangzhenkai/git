@@ -6,10 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.feicuiedu.gitdroid.R;
-import com.feicuiedu.gitdroid.pager.Pager0;
-import com.feicuiedu.gitdroid.pager.Pager1;
-import com.feicuiedu.gitdroid.pager.Pager2;
+import com.feicuiedu.gitdroid.splash.pager.Pager0;
+import com.feicuiedu.gitdroid.splash.pager.Pager1;
+import com.feicuiedu.gitdroid.splash.pager.Pager2;
 
 /**
  * Created by wangzhenkai on 2016/6/29.

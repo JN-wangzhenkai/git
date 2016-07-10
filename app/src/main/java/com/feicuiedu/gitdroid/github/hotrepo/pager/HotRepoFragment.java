@@ -1,4 +1,4 @@
-package com.feicuiedu.gitdroid.home;
+package com.feicuiedu.gitdroid.github.hotrepo.pager;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,7 +28,7 @@ public class HotRepoFragment extends Fragment {
     @Bind(R.id.viewPager)ViewPager viewPager;
     @Bind(R.id.tabLayout)TabLayout tabLayout;
 
-    private  HotRepoPagerAdapter adapter;
+    private HotRepoPagerAdapter adapter;
 
 
     @Nullable

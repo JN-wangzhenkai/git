@@ -1,4 +1,4 @@
-package com.feicuiedu.gitdroid.pager;
+package com.feicuiedu.gitdroid.splash.pager;
 
 import android.content.Context;
 import android.util.AttributeSet;

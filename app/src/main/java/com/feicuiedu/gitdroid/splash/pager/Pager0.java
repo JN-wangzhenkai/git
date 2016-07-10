@@ -1,10 +1,8 @@
-package com.feicuiedu.gitdroid.pager;
+package com.feicuiedu.gitdroid.splash.pager;
 
 import android.content.Context;
-import android.text.Layout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.feicuiedu.gitdroid.R;

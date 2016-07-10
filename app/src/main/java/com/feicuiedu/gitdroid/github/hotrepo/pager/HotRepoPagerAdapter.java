@@ -1,9 +1,11 @@
-package com.feicuiedu.gitdroid.home;
+package com.feicuiedu.gitdroid.github.hotrepo.pager;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.feicuiedu.gitdroid.github.hotrepo.view.LanguageRepoFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,27 +21,20 @@ import java.util.List;
  */
 public class HotRepoPagerAdapter extends FragmentPagerAdapter {
 
-    private  final List<String >la=new ArrayList<>();
+    private  final List<Language >la;
 
 
     public HotRepoPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
 
-        //假数据测试
-        la.add("java 1");
-        la.add("java 2");
-        la.add("java 3");
-        la.add("java 4");
-        la.add("java 5");
-        la.add("java 6");
-        la.add("java 7");
-
+        //从本地read 出来
+        la=Language.getDefaultLanguage(context);
 
     }
 
     @Override
     public Fragment getItem(int position) {
-        return RepoListFragment.getInstance(la.get(position));
+        return LanguageRepoFragment.getInstance(la.get(position));
     }
 
     @Override
@@ -49,6 +44,6 @@ public class HotRepoPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return la.get(position);
+        return la.get(position).getName();
     }
 }

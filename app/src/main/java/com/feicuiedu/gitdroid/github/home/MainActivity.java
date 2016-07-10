@@ -1,4 +1,4 @@
-package com.feicuiedu.gitdroid.home;
+package com.feicuiedu.gitdroid.github.home;
 
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,9 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.feicuiedu.gitdroid.R;
 import com.feicuiedu.gitdroid.commons.ActivityUtils;
+import com.feicuiedu.gitdroid.github.hotrepo.pager.HotRepoFragment;
+import com.feicuiedu.gitdroid.github.login.LoginActivity;
+import com.feicuiedu.gitdroid.github.login.model.CurrentUser;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,7 +37,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private  MenuItem menuItem;
     //热门仓库页面fragment
-    private  HotRepoFragment hotRepoFragment;
+    private HotRepoFragment hotRepoFragment;
+
+    private Button btnLogin;
+    private ImageView ivTcon;
+
+    private ActivityUtils activityUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onContentChanged() {
         super.onContentChanged();
         ButterKnife.bind(this);
+
+        activityUtils=new ActivityUtils(this);
 
         //设置navigationview监听器
         navigationView.setNavigationItemSelectedListener(this);
@@ -64,6 +78,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout.addDrawerListener(toggle);
        toggle.syncState();
+        ivTcon=ButterKnife.findById(navigationView.getHeaderView(0), R.id.ivIcon);
+
+
+        //登陆  直接butterknife Bind 访问不到  id在 navigationView里面第一位
+        btnLogin=(Button)ButterKnife.findById(navigationView.getHeaderView(0), R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                activityUtils.startActivity(LoginActivity.class);
+            }
+        });
 
         //默认显示的是hotrepofragment 热门仓库
         hotRepoFragment=new HotRepoFragment();
@@ -72,6 +98,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        FragmentTransaction transaction=fragmentManager.beginTransaction();
 //        transaction.replace(R.id.container,hotRepoFragment);
 //        transaction.commit();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+       //还没有授权登陆
+        if(CurrentUser.isEmpty()){
+            btnLogin.setText(R.string.login_github);
+            return;
+        }
+        //已经授权登陆
+        btnLogin.setText(R.string.switch_account);
+        getSupportActionBar().setTitle(CurrentUser.getUser().getName());
+        //设置用户头像
+
+        String photoUrl=CurrentUser.getUser().getAvatar();
+        //1.看内存有没有2。看硬盘有没有 3，根据URl 去下载 下载存到硬盘，/下载存到内存
+        ImageLoader.getInstance().displayImage(photoUrl,ivTcon);
     }
 
     @Override
